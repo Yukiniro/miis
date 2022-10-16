@@ -1,5 +1,6 @@
 import { describe } from "vitest";
 import { test, expect } from "vitest";
+import { polling } from "bittydash";
 import miis from "../src";
 
 describe("basic useage", () => {
@@ -37,5 +38,15 @@ describe("arguments", () => {
       miis.dispatch("b", 2, 3, 4);
     });
     expect(result).toEqual([2, 3, 4]);
+  });
+});
+
+describe("*", () => {
+  test("subscribe", async () => {
+    let count = 0;
+    miis.subscribe("a", () => count++);
+    miis.subscribe("*", () => count++);
+    miis.dispatch("a");
+    await polling(() => count === 2);
   });
 });

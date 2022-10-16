@@ -10,6 +10,7 @@ type Subscriber = {
   once: boolean;
 };
 
+const ALL_WILD_KEY = "*";
 const handlerMap = new Map();
 
 function subscribe(
@@ -30,7 +31,11 @@ function subscribe(
 }
 
 function dispatch(key: EventName, ...args: any[]) {
-  const list = handlerMap.get(key) || [];
+  const list = [];
+  list.push(...(handlerMap.get(key) || []));
+  if (key !== ALL_WILD_KEY) {
+    list.push(...(handlerMap.get(ALL_WILD_KEY) || []));
+  }
   const removeList = [];
   list.forEach((item: Subscriber) => {
     const { listener, once } = item;

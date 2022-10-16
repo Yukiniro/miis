@@ -4,6 +4,11 @@
 
 > The `miis` is a tiny functional event subscriber and dispatcher.
 
+## Features
+
+- __Tiny__.  weighs less than 1kb gzipped
+- __Plentiful__: a special "*" event type listens to all events
+
 ## Install
 
 This project need node and npm.
@@ -51,7 +56,7 @@ Register an event listenter for the given name.
 
 #### Params
 
-- `eventName` __string | symbol__ Name of event to listen for.
+- `eventName` __string | symbol__ Name of event to listen for.(_`*`_ for all events)
 - `listenter` __Function__ Function to call in response to given event
 
 #### Returns
