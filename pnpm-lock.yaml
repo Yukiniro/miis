@@ -10,6 +10,7 @@ specifiers:
   '@rollup/plugin-node-resolve': ^13.3.0
   '@rollup/plugin-typescript': ^8.3.1
   '@yukiniro/eslint-config': ^0.0.3
+  bittydash: ^0.1.1
   eslint: ^8.11.0
   prettier: ^2.6.0
   prettier-eslint: ^13.0.0
@@ -20,6 +21,9 @@ specifiers:
   tslib: ^2.3.1
   typescript: ^4.6.4
   vitest: ^0.12.2
+
+dependencies:
+  bittydash: 0.1.1
 
 devDependencies:
   '@babel/core': 7.17.8
@@ -1831,6 +1835,10 @@ packages:
     dependencies:
       tweetnacl: 0.14.5
     dev: true
+
+  /bittydash/0.1.1:
+    resolution: {integrity: sha512-ZfMy9OJB0Aeo183YclzIhxvCeA3D9aVj5gE3STBg+sOsBzKkZmjXvIbvq8FHNvDRjcF7CcwF9yRnu5ylVd9MyQ==}
+    dev: false
 
   /boxen/5.1.2:
     resolution: {integrity: sha512-9gYgQKXx+1nP8mP7CzFyaUARhg7D3n1dF/FnErWmu9l6JvGpNUN278h0aSb+QjoiKSWG+iZ3uHrcqk0qrY9RQQ==}

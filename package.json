@@ -1,22 +1,23 @@
 {
   "name": "miis",
   "version": "0.0.1",
-  "description": "Simple Start Template",
+  "description": "Tiny functional event subscriber and dispatcher.",
   "main": "index.ts",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "lint": "npx eslint src/**",
-    "prettier": "npx prettier src/** --write",
+    "prettier": "npx prettier src/** --write && npx prettier __test__/** --write",
     "test": "npx vitest",
     "test:run": "npx vitest run",
     "test:coverrage": "npx vitest --coverage",
     "publish": "npm run build && npm publish"
   },
   "keywords": [
-    "vite",
-    "vitest",
-    "docusaurus",
-    "template"
+    "event",
+    "emitter",
+    "subscribe",
+    "dispatch",
+    "linstener"
   ],
   "author": "Yukiniro",
   "license": "MIT",
@@ -44,5 +45,8 @@
     "tslib": "^2.3.1",
     "typescript": "^4.6.4",
     "vitest": "^0.12.2"
+  },
+  "dependencies": {
+    "bittydash": "^0.1.1"
   }
 }
