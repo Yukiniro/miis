@@ -1,4 +1,4 @@
-import { remove } from "bittydash";
+import { remove, isUndefined } from "bittydash";
 
 type Listener = (...args: any[]) => void;
 type EventName = string | symbol;
@@ -47,7 +47,16 @@ function dispatch(key: EventName, ...args: any[]) {
   removeList.forEach((item: Subscriber) => remove(list, item));
 }
 
+function clear(key?: EventName) {
+  if (isUndefined(key)) {
+    handlerMap.clear();
+  } else {
+    handlerMap.delete(key);
+  }
+}
+
 export default {
   subscribe,
   dispatch,
+  clear,
 };

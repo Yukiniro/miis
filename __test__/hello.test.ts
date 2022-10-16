@@ -1,7 +1,11 @@
-import { describe } from "vitest";
+import { afterEach, describe } from "vitest";
 import { test, expect } from "vitest";
 import { polling } from "bittydash";
 import miis from "../src";
+
+afterEach(() => {
+  miis.clear();
+});
 
 describe("basic useage", () => {
   test("subscribe", async () => {
@@ -16,6 +20,15 @@ describe("basic useage", () => {
       const unsubscribe = miis.subscribe("b", reject);
       unsubscribe();
       miis.dispatch("b");
+      setTimeout(resolve, 10);
+    });
+  });
+
+  test("clear", async () => {
+    await new Promise((resolve, reject) => {
+      miis.subscribe("a", reject);
+      miis.clear();
+      miis.dispatch("a");
       setTimeout(resolve, 10);
     });
   });

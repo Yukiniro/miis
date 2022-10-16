@@ -68,3 +68,10 @@ Register an event listenter for the given name.
 Invoke all handlers for the given name.
 
 - `eventName` __string | symbol__ Name of event to invoke for.
+
+### clear
+
+Clears the specified listeners. It will clear all listeners if the parameter is undefined.
+
+#### Params
+- `eventName` __string | symbol | undefiend__ Name of event to listen for.(_undefined_ for all events)
