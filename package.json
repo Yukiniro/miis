@@ -1,6 +1,6 @@
 {
   "name": "miis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tiny functional event subscriber and dispatcher.",
   "main": "index.ts",
   "scripts": {
@@ -23,7 +23,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Yukiniro/ssprojet"
+    "url": "https://github.com/Yukiniro/miis"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
