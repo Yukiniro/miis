@@ -1,6 +1,6 @@
 {
   "name": "miis",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Tiny functional event subscriber and dispatcher.",
   "main": "index.ts",
   "scripts": {
