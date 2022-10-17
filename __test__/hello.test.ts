@@ -8,11 +8,12 @@ afterEach(() => {
 });
 
 describe("basic useage", () => {
-  test("subscribe", async () => {
-    await new Promise((resolve) => {
-      miis.subscribe("a", resolve);
-      miis.dispatch("a");
-    });
+  test("subscribe", () => {
+    let count = 0;
+    miis.subscribe("a", () => count++);
+    miis.dispatch("a");
+    miis.dispatch("a");
+    expect(count).toBe(2);
   });
 
   test("unsubscribe", async () => {
