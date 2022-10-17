@@ -31,6 +31,13 @@ describe("basic useage", () => {
       miis.dispatch("a");
       setTimeout(resolve, 10);
     });
+
+    await new Promise((resolve, reject) => {
+      miis.subscribe("a", reject);
+      miis.clear("a");
+      miis.dispatch("a");
+      setTimeout(resolve, 10);
+    });
   });
 
   test("once", async () => {

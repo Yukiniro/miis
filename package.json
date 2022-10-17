@@ -2,7 +2,9 @@
   "name": "miis",
   "version": "1.0.3",
   "description": "Tiny functional event subscriber and dispatcher.",
-  "main": "index.ts",
+  "main": "dist/miis.cjs",
+  "module": "dist/miis.mjs",
+  "types": "dist/src/index.d.ts",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "lint": "npx eslint src/**",
