@@ -1,6 +1,6 @@
 {
   "name": "miis",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Tiny functional event subscriber and dispatcher.",
   "main": "dist/miis.cjs",
   "module": "dist/miis.mjs",
