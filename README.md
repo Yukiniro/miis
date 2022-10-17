@@ -58,6 +58,8 @@ Register an event listenter for the given name.
 
 - `eventName` __string | symbol__ Name of event to listen for.(_`*`_ for all events)
 - `listenter` __Function__ Function to call in response to given event
+- `options` __Object__ Some options. _optional_
+  - `once` __boolean__ Only call once if it is `true`.
 
 #### Returns
 

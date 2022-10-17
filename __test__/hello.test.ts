@@ -32,6 +32,23 @@ describe("basic useage", () => {
       setTimeout(resolve, 10);
     });
   });
+
+  test("once", async () => {
+    let tag = 0;
+    await new Promise((resolve) => {
+      miis.subscribe(
+        "a",
+        (value) => {
+          tag++;
+          resolve(value);
+        },
+        { once: true }
+      );
+      miis.dispatch("a");
+    });
+    miis.dispatch("a");
+    expect(tag).toBe(1);
+  });
 });
 
 describe("arguments", () => {

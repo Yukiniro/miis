@@ -31,20 +31,23 @@ function subscribe(
 }
 
 function dispatch(key: EventName, ...args: any[]) {
-  const list = [];
-  list.push(...(handlerMap.get(key) || []));
-  if (key !== ALL_WILD_KEY) {
-    list.push(...(handlerMap.get(ALL_WILD_KEY) || []));
+  const trigger = (list: Subscriber[]) => {
+    const removeList = [];
+    list.forEach((item: Subscriber) => {
+      const { listener, once } = item;
+      listener(...args);
+      if (once) {
+        removeList.push(item);
+      }
+    });
+    removeList.forEach((item: Subscriber) => remove(list, item));
+  };
+  if (handlerMap.has(key)) {
+    trigger(handlerMap.get(key));
   }
-  const removeList = [];
-  list.forEach((item: Subscriber) => {
-    const { listener, once } = item;
-    listener(...args);
-    if (once) {
-      removeList.push(item);
-    }
-  });
-  removeList.forEach((item: Subscriber) => remove(list, item));
+  if (key !== ALL_WILD_KEY && handlerMap.has(ALL_WILD_KEY)) {
+    trigger(handlerMap.get(ALL_WILD_KEY));
+  }
 }
 
 function clear(key?: EventName) {
