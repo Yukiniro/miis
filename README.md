@@ -38,20 +38,20 @@ miis.dispatch("a", 1, 2, 3);
 And it's so easy to operate with react. Here is a [demo](https://stackblitz.com/edit/react-ts-ucliuq?file=App.tsx).
 
 ```jsx
-import * as React from 'react';
-import './style.css';
-import miis from 'miis';
+import * as React from "react";
+import "./style.css";
+import miis from "miis";
 
 export default function App() {
   const [count, setCount] = React.useState(0);
   React.useEffect(() => {
-    return miis.subscribe('a', () => {
+    return miis.subscribe("a", () => {
       setCount(count + 1);
     });
   }, [count]);
 
   const handleClick = () => {
-    miis.dispatch('a');
+    miis.dispatch("a");
   };
 
   return (
@@ -86,7 +86,7 @@ Register an event listenter for the given name.
 
 - `eventName` **string | symbol** Name of event to listen for.(_`*`_ for all events)
 - `listenter` **Function** Function to call in response to given event
-- `options` **Object** Some options. _optional_
+- `options` **undefined | Object** Some options. _optional_
   - `once` **boolean** Only call once if it is `true`.
 
 #### Returns
@@ -96,6 +96,8 @@ Register an event listenter for the given name.
 ### dispatch
 
 Invoke all handlers for the given name.
+
+#### Params
 
 - `eventName` **string | symbol** Name of event to invoke for.
 
