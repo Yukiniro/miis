@@ -1,6 +1,5 @@
 import { afterEach, describe } from "vitest";
 import { test, expect } from "vitest";
-import { polling } from "bittydash";
 import miis from "../src";
 
 afterEach(() => {
@@ -80,11 +79,28 @@ describe("arguments", () => {
 });
 
 describe("*", () => {
-  test("subscribe", async () => {
+  test("subscribe", () => {
     let count = 0;
     miis.subscribe("a", () => count++);
     miis.subscribe("*", () => count++);
     miis.dispatch("a");
-    await polling(() => count === 2);
+    expect(count).toBe(2);
   });
+});
+
+test("scope", () => {
+  let count = 0;
+  miis.subscribe("Event A", () => count++, { scope: "Scope A" });
+  miis.subscribe("Event B", () => count++);
+  miis.dispatch("Event A");
+  expect(count).toBe(0);
+  miis.setScope("Scope A");
+  expect(miis.getScope()).toBe("Scope A");
+  miis.dispatch("Event A");
+  expect(count).toBe(1);
+  miis.dispatch("Event B");
+  expect(count).toBe(1);
+  miis.resetScope();
+  miis.dispatch("Event B");
+  expect(count).toBe(2);
 });

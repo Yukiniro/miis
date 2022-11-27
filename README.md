@@ -6,8 +6,9 @@
 
 ## Features
 
-- **Tiny**. weighs less than 1kb gzipped
+- **Tiny**: weighs less than 1kb gzipped
 - **Plentiful**: a special "\*" event type listens to all events
+- **Scope**: isolate different listening environments by setting scope
 
 ## Install
 
@@ -108,3 +109,19 @@ Clears the specified listeners. It will clear all listeners if the parameter is 
 #### Params
 
 - `eventName` **string | symbol | undefiend** Name of event to listen for.(_undefined_ for all events)
+
+### setScope
+
+If you call `dispatch`, only the handlers for the given scope will be invoked.
+
+#### Params
+
+- `scope` **string** Name of scope.
+
+### getScope
+
+Return current `scope`.
+
+### resetScope
+
+Reset the scope to be `default`.
