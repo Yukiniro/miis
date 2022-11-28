@@ -50,6 +50,6 @@
     "vitest": "^0.12.2"
   },
   "dependencies": {
-    "bittydash": "^0.1.1"
+    "bittydash": "^0.3.0"
   }
 }
