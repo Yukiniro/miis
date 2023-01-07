@@ -10,7 +10,7 @@ specifiers:
   '@rollup/plugin-node-resolve': ^13.3.0
   '@rollup/plugin-typescript': ^10.0.0
   '@yukiniro/eslint-config': ^0.0.6
-  bittydash: ^0.3.0
+  bittydash: ^0.4.0
   c8: ^7.12.0
   eslint: ^8.11.0
   prettier: ^2.6.0
@@ -24,7 +24,7 @@ specifiers:
   vitest: ^0.25.0
 
 dependencies:
-  bittydash: 0.3.3
+  bittydash: 0.4.4
 
 devDependencies:
   '@babel/core': 7.17.8
@@ -1958,8 +1958,8 @@ packages:
       tweetnacl: 0.14.5
     dev: true
 
-  /bittydash/0.3.3:
-    resolution: {integrity: sha512-mRTDVjSjPXjjOZUSsJjUvjcyyPO2LNfwA/DKa/TyjycftP1ZQBHsk0GKqZk90lENOJRMOBUNNXbyUsM2SPpbXQ==}
+  /bittydash/0.4.4:
+    resolution: {integrity: sha512-X/o8ofSGXPCqxWTEPOm1x9DYIF0stCneRydYUqRJRd19mi52+73Mqkb1XZ9saQZT9ffSCo0I4GppJ+xBIxJfDQ==}
     dev: false
 
   /boxen/5.1.2:
