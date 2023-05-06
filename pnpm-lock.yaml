@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   bittydash:
-    specifier: ^0.5.0
-    version: 0.5.5
+    specifier: ^0.7.0
+    version: 0.7.0
 
 devDependencies:
   '@babel/core':
@@ -2302,8 +2302,8 @@ packages:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
 
-  /bittydash@0.5.5:
-    resolution: {integrity: sha512-c2Y6cKFQRrbU2jZPhIdNuoXopSwV/QxL0jUxUAbzEhQuEqRYJNNmbyHxG0LACYQbK0kVPy5zRa/+m0HOlAL5Pg==}
+  /bittydash@0.7.0:
+    resolution: {integrity: sha512-8NA8SNBBNBrlcTFt923SUZjpGGIsd7w4fjRzB25lK/zaorO5wMNCcR+PURZAYQwfhp88a2ILW40VD0EY9xogSQ==}
     dev: false
 
   /blueimp-md5@2.19.0:
