@@ -79,6 +79,8 @@ function resetScope() {
   curScope = "default";
 }
 
+export { subscribe, dispatch, setScope, getScope, resetScope, clear };
+
 export default {
   subscribe,
   dispatch,
