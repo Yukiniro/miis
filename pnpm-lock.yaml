@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   bittydash:
     specifier: ^0.7.0
@@ -37,8 +41,8 @@ devDependencies:
     specifier: ^0.0.7
     version: 0.0.7(eslint-plugin-n@15.7.0)
   c8:
-    specifier: ^7.12.0
-    version: 7.12.0
+    specifier: ^8.0.0
+    version: 8.0.0
   eslint:
     specifier: ^8.11.0
     version: 8.11.0
@@ -2458,9 +2462,9 @@ packages:
       semver: 7.4.0
     dev: true
 
-  /c8@7.12.0:
-    resolution: {integrity: sha512-CtgQrHOkyxr5koX1wEUmN/5cfDa2ckbHRA4Gy5LAL0zaCFtVWJS5++n+w4/sr2GWGerBxgTjpKeDclk/Qk6W/A==}
-    engines: {node: '>=10.12.0'}
+  /c8@8.0.0:
+    resolution: {integrity: sha512-XHA5vSfCLglAc0Xt8eLBZMv19lgiBSjnb1FLAQgnwkuhJYEonpilhEB4Ea3jPAbm0FhD6VVJrc0z73jPe7JyGQ==}
+    engines: {node: '>=12'}
     hasBin: true
     dependencies:
       '@bcoe/v8-coverage': 0.2.3
