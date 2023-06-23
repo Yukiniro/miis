@@ -44,7 +44,7 @@
     "prettier-eslint": "^15.0.0",
     "rollup": "^3.20.3",
     "rollup-plugin-filesize": "^10.0.0",
-    "rollup-plugin-typescript2": "^0.31.2",
+    "rollup-plugin-typescript2": "^0.35.0",
     "tslib": "^2.3.1",
     "typescript": "^5.0.0",
     "vitest": "^0.32.0"
