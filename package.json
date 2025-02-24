@@ -1,55 +1,45 @@
 {
-  "name": "miis",
-  "version": "1.1.5",
-  "description": "Tiny functional event subscriber and dispatcher.",
-  "main": "dist/miis.cjs",
-  "module": "dist/miis.mjs",
-  "types": "dist/src/index.d.ts",
-  "scripts": {
-    "build": "npx rollup -c rollup.config.mjs",
-    "lint": "npx eslint src/**",
-    "prettier": "npx prettier src/** --write && npx prettier __test__/** --write",
-    "test": "npx vitest",
-    "test:run": "npx vitest run",
-    "test:coverrage": "npx vitest --coverage",
-    "npm:publish": "npm run test:run && npm run build && npm publish"
-  },
-  "keywords": [
-    "event",
-    "emitter",
-    "subscribe",
-    "dispatch",
-    "linstener"
-  ],
-  "author": "Yukiniro",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Yukiniro/miis"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.17.8",
-    "@babel/plugin-transform-modules-commonjs": "^7.17.7",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-typescript": "^7.16.7",
-    "@rollup/plugin-babel": "^6.0.0",
-    "@rollup/plugin-commonjs": "^25.0.0",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-terser": "^0.4.1",
-    "@rollup/plugin-typescript": "^11.0.0",
-    "@yukiniro/eslint-config": "^0.0.7",
-    "c8": "^8.0.0",
-    "eslint": "^8.11.0",
-    "prettier": "^3.0.0",
-    "prettier-eslint": "^16.0.0",
-    "rollup": "^4.0.0",
-    "rollup-plugin-filesize": "^10.0.0",
-    "rollup-plugin-typescript2": "^0.36.0",
-    "tslib": "^2.3.1",
-    "typescript": "^5.0.0",
-    "vitest": "^1.0.0"
-  },
-  "dependencies": {
-    "bittydash": "^0.7.0"
-  }
+    "name": "miis",
+    "version": "1.1.5",
+    "description": "Tiny functional event subscriber and dispatcher.",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "rslib build",
+        "dev": "rslib build --watch",
+        "format": "prettier --write src/**",
+        "lint": "eslint src/**",
+        "test": "vitest run",
+        "coverage": "vitest run --coverage",
+        "npm:publish": "npm run test:run && npm run build && npm publish"
+    },
+    "keywords": [
+        "event",
+        "emitter",
+        "subscribe",
+        "dispatch",
+        "linstener"
+    ],
+    "author": "Yukiniro",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Yukiniro/miis"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.19.0",
+        "@rslib/core": "^0.5.1",
+        "@types/node": "^22.8.1",
+        "@vitest/coverage-v8": "3.0.6",
+        "eslint": "^9.19.0",
+        "globals": "^15.14.0",
+        "prettier": "^3.4.2",
+        "typescript": "^5.7.3",
+        "typescript-eslint": "^8.22.0",
+        "vitest": "^3.0.6"
+    },
+    "dependencies": {
+        "bittydash": "^0.7.1"
+    }
 }
