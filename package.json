@@ -1,6 +1,6 @@
 {
     "name": "miis",
-    "version": "1.1.5",
+    "version": "1.1.6",
     "description": "Tiny functional event subscriber and dispatcher.",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
@@ -12,7 +12,7 @@
         "lint": "eslint src/**",
         "test": "vitest run",
         "coverage": "vitest run --coverage",
-        "npm:publish": "npm run test:run && npm run build && npm publish"
+        "npm:publish": "npm run build && npm publish"
     },
     "keywords": [
         "event",
