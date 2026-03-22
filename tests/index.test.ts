@@ -1,106 +1,150 @@
-import { afterEach, describe } from 'vitest';
+import { afterEach, describe, beforeEach } from 'vitest';
 import { test, expect } from 'vitest';
 import miis from '../src';
 
 afterEach(() => {
-  miis.clear();
+    miis.clear();
+    miis.resetScope();
 });
 
-describe('basic useage', () => {
-  test('subscribe', () => {
-    let count = 0;
-    miis.subscribe('a', () => count++);
-    miis.dispatch('a');
-    miis.dispatch('a');
-    expect(count).toBe(2);
-  });
-
-  test('unsubscribe', async () => {
-    await new Promise((resolve, reject) => {
-      const unsubscribe = miis.subscribe('b', reject);
-      unsubscribe();
-      miis.dispatch('b');
-      setTimeout(resolve, 10);
-    });
-  });
-
-  test('clear', async () => {
-    await new Promise((resolve, reject) => {
-      miis.subscribe('a', reject);
-      miis.clear();
-      miis.dispatch('a');
-      setTimeout(resolve, 10);
+describe('basic usage', () => {
+    test('subscribe', () => {
+        let result = '';
+        miis.subscribe('a', (...args) => {
+            result = args.join(',');
+        });
+        miis.dispatch('a', 1, 2, 3);
+        expect(result).toBe('1,2,3');
     });
 
-    await new Promise((resolve, reject) => {
-      miis.subscribe('a', reject);
-      miis.clear('a');
-      miis.dispatch('a');
-      setTimeout(resolve, 10);
+    test('dispatch with no listener', () => {
+        expect(() => miis.dispatch('nonexistent')).not.toThrow();
     });
-  });
 
-  test('once', async () => {
-    let tag = 0;
-    await new Promise((resolve) => {
-      miis.subscribe(
-        'a',
-        (value) => {
-          tag++;
-          resolve(value);
-        },
-        { once: true },
-      );
-      miis.dispatch('a');
+    test('dispatch with multiple listeners', () => {
+        let count = 0;
+        miis.subscribe('a', () => count++);
+        miis.subscribe('a', () => count++);
+        miis.dispatch('a');
+        expect(count).toBe(2);
     });
-    miis.dispatch('a');
-    expect(tag).toBe(1);
-  });
 });
 
-describe('arguments', () => {
-  test('single', async () => {
-    const result = await new Promise((resolve) => {
-      miis.subscribe('b', resolve);
-      miis.dispatch('b', 1);
+describe('unsubscribe', () => {
+    test('unsubscribe', () => {
+        let count = 0;
+        const unsubscribe = miis.subscribe('a', () => {
+            count++;
+        });
+        unsubscribe();
+        miis.dispatch('a');
+        expect(count).toBe(0);
     });
-    expect(result).toBe(1);
-  });
 
-  test('multi', async () => {
-    const result = await new Promise((resolve) => {
-      miis.subscribe('b', (...args) => {
-        resolve(Array.from(args));
-      });
-      miis.dispatch('b', 2, 3, 4);
+    test('unsubscribe twice should be safe', () => {
+        const unsubscribe = miis.subscribe('a', () => {});
+        unsubscribe();
+        expect(() => unsubscribe()).not.toThrow();
     });
-    expect(result).toEqual([2, 3, 4]);
-  });
 });
 
-describe('*', () => {
-  test('subscribe', () => {
-    let count = 0;
-    miis.subscribe('a', () => count++);
-    miis.subscribe('*', () => count++);
-    miis.dispatch('a');
-    expect(count).toBe(2);
-  });
+describe('once', () => {
+    test('once', () => {
+        let count = 0;
+        miis.subscribe(
+            'a',
+            () => {
+                count++;
+            },
+            { once: true },
+        );
+        miis.dispatch('a');
+        miis.dispatch('a');
+        expect(count).toBe(1);
+    });
 });
 
-test('scope', () => {
-  let count = 0;
-  miis.subscribe('Event A', () => count++, { scope: 'Scope A' });
-  miis.subscribe('Event B', () => count++);
-  miis.dispatch('Event A');
-  expect(count).toBe(0);
-  miis.setScope('Scope A');
-  expect(miis.getScope()).toBe('Scope A');
-  miis.dispatch('Event A');
-  expect(count).toBe(1);
-  miis.dispatch('Event B');
-  expect(count).toBe(1);
-  miis.resetScope();
-  miis.dispatch('Event B');
-  expect(count).toBe(2);
+describe('wildcard', () => {
+    test('wildcard listens to all events', () => {
+        let count = 0;
+        miis.subscribe('*', () => {
+            count++;
+        });
+        miis.dispatch('a');
+        miis.dispatch('b');
+        expect(count).toBe(2);
+    });
+
+    test('wildcard should not trigger on itself', () => {
+        let count = 0;
+        miis.subscribe('*', () => count++);
+        miis.dispatch('*');
+        expect(count).toBe(1);
+    });
+});
+
+describe('scope', () => {
+    beforeEach(() => {
+        miis.resetScope();
+    });
+
+    test('setScope', () => {
+        miis.setScope('test');
+        expect(miis.getScope()).toBe('test');
+    });
+
+    test('getScope default', () => {
+        expect(miis.getScope()).toBe('default');
+    });
+
+    test('resetScope', () => {
+        miis.setScope('test');
+        miis.resetScope();
+        expect(miis.getScope()).toBe('default');
+    });
+
+    test('dispatch with different scope', () => {
+        let count = 0;
+
+        miis.subscribe('a', () => count++);
+        miis.setScope('test');
+        miis.dispatch('a');
+        expect(count).toBe(0);
+
+        miis.resetScope();
+        miis.dispatch('a');
+        expect(count).toBe(1);
+    });
+});
+
+describe('clear', () => {
+    test('clear specific event', () => {
+        let count = 0;
+        miis.subscribe('a', () => count++);
+        miis.subscribe('b', () => count++);
+        miis.clear('a');
+        miis.dispatch('a');
+        miis.dispatch('b');
+        expect(count).toBe(1);
+    });
+
+    test('clear all events', () => {
+        let count = 0;
+        miis.subscribe('a', () => count++);
+        miis.subscribe('b', () => count++);
+        miis.clear();
+        miis.dispatch('a');
+        miis.dispatch('b');
+        expect(count).toBe(0);
+    });
+});
+
+describe('symbol event', () => {
+    test('symbol as event name', () => {
+        const sym = Symbol('test');
+        let called = false;
+        miis.subscribe(sym, () => (called = true));
+        miis.dispatch(sym);
+        expect(called).toBe(true);
+    });
 });

@@ -1,18 +1,18 @@
 # miis
 
-![NPM](https://img.shields.io/npm/l/miis?color=blue&style=flat-square) ![npm](https://img.shields.io/npm/v/miis?color=blue&style=flat-square)
+![NPM](https://img.shields.io/npm/l/miis?color=blue&style=flat-square) ![npm](https://img.shields.io/npm/v/miis?color=blue&style=flat-square) [![CI](https://github.com/Yukiniro/miis/actions/workflows/ci.yml/badge.svg)](https://github.com/Yukiniro/miis/actions/workflows/ci.yml)
 
 > The `miis` is a tiny functional event subscriber and dispatcher.
 
 ## Features
 
 - **Tiny**: weighs less than 1kb gzipped
-- **Plentiful**: a special "\*" event type listens to all events
+- **Plentiful**: a special "*" event type listens to all events
 - **Scope**: isolate different listening environments by setting scope
 
 ## Install
 
-This project need node and npm.
+This project needs node and npm.
 
 ```shell
 npm install miis --save
@@ -24,19 +24,19 @@ or
 pnpm add miis --save
 ```
 
-## Useage
+## Usage
 
 ```javascript
 import miis from "miis";
 
 miis.subscribe("a", (...args) => {
   console.log("a event call"); // a event call
-  console.log(...args); /// 1, 2, 3
+  console.log(...args); // 1, 2, 3
 });
 miis.dispatch("a", 1, 2, 3);
 ```
 
-And it's so easy to operate with react. Here is a [demo](https://stackblitz.com/edit/react-ts-ucliuq?file=App.tsx).
+And it's so easy to operate with React. Here is a [demo](https://stackblitz.com/edit/react-ts-ucliuq?file=App.tsx).
 
 ```jsx
 import * as React from "react";
@@ -64,7 +64,7 @@ export default function App() {
 }
 ```
 
-You could unsubscribe the event lisenter with the result of subscribe.
+You could unsubscribe the event listener with the result of subscribe.
 
 ```javascript
 import miis from "miis";
@@ -79,20 +79,20 @@ miis.dispatch("a"); // not work
 
 ## API
 
-### subscirbe
+### subscribe
 
-Register an event listenter for the given name.
+Register an event listener for the given name.
 
 #### Params
 
 - `eventName` **string | symbol** Name of event to listen for.(_`*`_ for all events)
-- `listenter` **Function** Function to call in response to given event
+- `listener` **Function** Function to call in response to given event
 - `options` **undefined | Object** Some options. _optional_
   - `once` **boolean** Only call once if it is `true`.
 
 #### Returns
 
-- `unsubscribe` **Function** Function to remove the listenter.
+- `unsubscribe` **Function** Function to remove the listener.
 
 ### dispatch
 
@@ -108,7 +108,7 @@ Clears the specified listeners. It will clear all listeners if the parameter is 
 
 #### Params
 
-- `eventName` **string | symbol | undefiend** Name of event to listen for.(_undefined_ for all events)
+- `eventName` **string | symbol | undefined** Name of event to clear.(_undefined_ for all events)
 
 ### setScope
 
@@ -125,3 +125,7 @@ Return current `scope`.
 ### resetScope
 
 Reset the scope to be `default`.
+
+## License
+
+[MIT](./LICENSE)

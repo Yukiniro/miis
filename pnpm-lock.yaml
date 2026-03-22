@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      bittydash:
-        specifier: ^0.7.1
-        version: 0.7.1
     devDependencies:
       '@eslint/js':
         specifier: ^9.19.0
@@ -767,9 +763,6 @@ packages:
   balanced-match@4.0.4:
     resolution: {integrity: sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==}
     engines: {node: 18 || 20 || >=22}
-
-  bittydash@0.7.1:
-    resolution: {integrity: sha512-zsrD4PaWzuOc6TIahZaF081DrPTLIwm0s8im2oxU5oqnB2HdKKbMgFJb/AEqfb7sQY7sJC4zwdQSGxxc7shJFQ==}
 
   brace-expansion@2.0.2:
     resolution: {integrity: sha512-Jt0vHyM+jmUBqojB7E1NIYadt0vI0Qxjxd2TErW94wDz+E2LAm5vKMXXwg6ZZBTHPuUlDgQHKXvjGBdfcF1ZDQ==}
@@ -1937,8 +1930,6 @@ snapshots:
   balanced-match@1.0.2: {}
 
   balanced-match@4.0.4: {}
-
-  bittydash@0.7.1: {}
 
   brace-expansion@2.0.2:
     dependencies:
