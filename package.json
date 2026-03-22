@@ -1,6 +1,6 @@
 {
     "name": "miis",
-    "version": "1.1.6",
+    "version": "1.2.0",
     "description": "Tiny functional event subscriber and dispatcher.",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
@@ -19,7 +19,9 @@
         "emitter",
         "subscribe",
         "dispatch",
-        "linstener"
+        "listener",
+        "eventbus",
+        "pubsub"
     ],
     "author": "Yukiniro",
     "license": "MIT",
@@ -38,9 +40,6 @@
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.57.1",
         "vitest": "^3.2.4"
-    },
-    "dependencies": {
-        "bittydash": "^0.7.1"
     },
     "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
 }

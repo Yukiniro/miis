@@ -1,5 +1,3 @@
-import { remove, isUndefined } from 'bittydash';
-
 type Listener = (...args: unknown[]) => void;
 type EventName = string | symbol;
 type Options = {
@@ -9,12 +7,23 @@ type Options = {
 type Subscriber = {
     listener: Listener;
     once?: boolean;
-    scope?: string;
+    scope: string;
 };
 
 const ALL_WILD_KEY = '*';
-const handlerMap = new Map();
+const handlerMap = new Map<EventName, Subscriber[]>();
 let curScope = 'default';
+
+function removeItem<T>(arr: T[], item: T): void {
+    const idx = arr.indexOf(item);
+    if (idx > -1) {
+        arr.splice(idx, 1);
+    }
+}
+
+function isUndefined(value: unknown): value is undefined {
+    return value === undefined;
+}
 
 function subscribe(
     key: EventName,
@@ -24,20 +33,20 @@ function subscribe(
     if (!handlerMap.has(key)) {
         handlerMap.set(key, []);
     }
-    const list = handlerMap.get(key);
+    const list = handlerMap.get(key)!;
     const { once, scope } = options || {};
-    const item = {
+    const item: Subscriber = {
         listener,
         once,
         scope: isUndefined(scope) ? 'default' : scope,
     };
     list.push(item);
     return () => {
-        remove(list, item);
+        removeItem(list, item);
     };
 }
 
-function dispatch(key: EventName, ...args: unknown[]) {
+function dispatch(key: EventName, ...args: unknown[]): void {
     const trigger = (list: Subscriber[]) => {
         const removeList: Subscriber[] = [];
         list.filter((item) => item.scope === curScope).forEach(
@@ -49,17 +58,17 @@ function dispatch(key: EventName, ...args: unknown[]) {
                 }
             },
         );
-        removeList.forEach((item: Subscriber) => remove(list, item));
+        removeList.forEach((item: Subscriber) => removeItem(list, item));
     };
     if (handlerMap.has(key)) {
-        trigger(handlerMap.get(key));
+        trigger(handlerMap.get(key)!);
     }
     if (key !== ALL_WILD_KEY && handlerMap.has(ALL_WILD_KEY)) {
-        trigger(handlerMap.get(ALL_WILD_KEY));
+        trigger(handlerMap.get(ALL_WILD_KEY)!);
     }
 }
 
-function clear(key?: EventName) {
+function clear(key?: EventName): void {
     if (isUndefined(key)) {
         handlerMap.clear();
     } else {
@@ -67,7 +76,7 @@ function clear(key?: EventName) {
     }
 }
 
-function setScope(scope: string) {
+function setScope(scope: string): void {
     curScope = scope;
 }
 
@@ -75,7 +84,7 @@ function getScope(): string {
     return curScope;
 }
 
-function resetScope() {
+function resetScope(): void {
     curScope = 'default';
 }
 
